@@ -35,8 +35,6 @@ sed -i -e "s,source $SHELL_ENV,export MY_SH_HOME=$PWD\\${NEW_LINE}export MY_SH_S
 # Source my-sh.sh which has prerequisites of shell plugins defined in domain.
 sed -i -e "s,source $SHELL_ENV,source $PWD/my-sh.sh\\${NEW_LINE}source $SHELL_ENV," $RC
 
-# Input rc.
-ln -sf $PWD/input/inputrc $HOME/.inputrc
 
 # Vim rc.
 ln -sf $PWD/vim/vimrc $HOME/.vimrc

@@ -1,5 +1,8 @@
 unsetopt share_history
 
+plugins=(kubectl)
+source <(kubectl completion zsh)
+
 alias tmux='tmux -2' 
 alias tls='tmux ls' 
 alias tat='tmux a -t' 

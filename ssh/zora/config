@@ -2,20 +2,8 @@ ServerAliveInterval 120
 
 # Personal
 Host gcp
-  User zanmato
+  User xiehao 
   HostName zanmato1984.com
-
-Host gcp-zt
-  User zanmato
-  HostName 172.30.1.1
-
-Host turing
-  User zanmato
-  HostName 192.168.2.20
-
-Host turing-zt
-  User zanmato
-  HostName 172.30.1.20
 
 Host turing-frp
   User zanmato
@@ -23,22 +11,6 @@ Host turing-frp
   Port 1109
 
 # Company
-Host uc
+Host vm
   User root
-  HostName 120.132.23.9
-
-Host idc59
-  User root
-  HostName 172.16.5.59
-
-Host idc81
-  User root
-  HostName 172.16.5.81
-
-Host idc82
-  User root
-  HostName 172.16.5.82
-
-Host idc85
-  User root
-  HostName 172.16.5.85
+  HostName 172.20.101.181

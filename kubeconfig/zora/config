@@ -1,0 +1,64 @@
+apiVersion: v1
+clusters:
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://alpha-kube-apiserver-cn4.eniot.io:8443
+  name: alpha-k8s-cn4
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://beta-kube-apiserver-cn4.eniot.io:8443
+  name: beta-kube-cn4
+- cluster:
+    certificate-authority: /home/xiehao/.minikube/ca.crt
+    server: https://192.168.231.130:8443
+  name: minikube
+- cluster:
+    insecure-skip-tls-verify: true
+    server: https://k8s116.eniot.io:6443
+  name: test-k8s-cn4
+contexts:
+- context:
+    cluster: alpha-k8s-cn4
+    user: admin/alpha-k8s-cn4
+  name: alpha
+- context:
+    cluster: beta-kube-cn4
+    namespace: seldon
+    user: admin/beta-kube-cn4
+  name: beta
+- context:
+    cluster: alpha-k8s-cn4
+    user: eap/alpha-k8s-cn4
+  name: eap-alpha
+- context:
+    cluster: minikube
+    user: minikube
+  name: minikube
+- context:
+    cluster: beta-kube-cn4
+    user: system:serviceaccount:kubeflow:centraldashboard/beta-kube-cn4
+  name: sa
+- context:
+    cluster: test-k8s-cn4
+    user: admin/test-k8s-cn4
+  name: test
+current-context: alpha
+kind: Config
+preferences: {}
+users:
+- name: admin/alpha-k8s-cn4
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6InVfTlo4QjZuUTlCWXQ2QVZlS2ZueWZkdDBtaWdKRjQxbmJxc2RSLUV0X1UifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJzYS10bXAtYWRtaW4tdG9rZW4taDQ4cWIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoic2EtdG1wLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiOTY2ZWQyZDUtNDVkMS00MDMxLWJkYzItODdmNWJjZmM0OWEwIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOnNhLXRtcC1hZG1pbiJ9.TQgB960ND9CjPGePdzCT8ERNIY3ofCfA8_ltWK165aJGbXdWzThrmxGBHBssaq3v3lEgxQF_n_UZMafqCCWMCl_1CqEBAiYmcj3g1RAcE3sZWmPeBQAGU0RZKjhu4ajAzcjMupJvp_UVveYDYR_m5eWVHln0LEyaek1OWYFjRU0Go9FDK6qipLIW4oKkB50LXVzC5PZPy8uvnvs1MHKxoSSHED9rMXYUHa-gORNKY7OrWNf2aE5p-wriXx3YfH6mx7YXTBIxHJ0FK8lPYw8DFk2KSKl5QBEJtTUn2wHyD-Z-AbVn8fiz5V6EZZV0AMIhVHCGjqfOVLWSH1i_0KBNrA
+- name: admin/beta-kube-cn4
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IlRpdnZrTFI1SG93dE81WlVDdU5qRVhZeGR5eDZDbVlxeEZxRGNjMGZLLVUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJkZXZvcHMtdG9rZW4tcDhnazUiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGV2b3BzIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiZGNlZmIzZmQtOWFiZS00ZTZkLWIyYzAtMDhjZmUxOGY2MWI5Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOmRldm9wcyJ9.bnljcmVBCYmJ8y1h3BIT6VlbZd1x8jLFg98sjNS3PFGLx7xB7U1VJTjfNlpVmkpvveZhRFSBc2nPAdntufPZQMZvfHLYgGvSc5ZEFIiMP1QDgEy-RA1SMBHP2qRx_NTGOXtLDgtheYXs6DF-pSF4gxBUqB-KxPcB3sb2RfK23gm-6ul7jNmLD_4us-DoCAsXjfHTkMNF2sd253fGwlinUGezdoZL95af47hfaSOSJLVcgm-PNA9AAQ8ofB7bkcealNNt8TXihQNNRlPkXcw8gz7HgKE_xKqx-8YxeQoRlk43wO2DIWFwTcJV2vc6HoQccnU9hg167ia60R-F_pk5nA
+- name: eap/alpha-k8s-cn4
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6InVfTlo4QjZuUTlCWXQ2QVZlS2ZueWZkdDBtaWdKRjQxbmJxc2RSLUV0X1UifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJzYS1lYXAtYWRtaW4tdG9rZW4tdHFtNWQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoic2EtZWFwLWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiY2NjYzZhZDItOWMyNS00NjJkLWJmZDctODNkOGNmZjBjMzUxIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmUtc3lzdGVtOnNhLWVhcC1hZG1pbiJ9.XtkmA9Hf54KMs4OZc5g9dFlvlwWCof6PFWl4l2npO63PHc5se7DvGP-3DUpeDPpeUf-AUrgGSMJsKX_CeCLqKSqTi9gQITAi6LWrgkU1fJgIaFiE09fi_xsfTRY057BiI8BCIrsjQ7MV5Ox2mB33f_JszDwN7Sx3ioZF1F1v3go4fCkl-8sqiO1cbayAK39F8ArdRtTFWdaz2FE0Ot5duJyoZI8OK1an0x66DGFWmr9gX23xfqb0iqOTOwoY6F2h6FbP4nWAslgHQ2wUoeG5wpA6_eKecx94sJM_sQzZ04xk8LMP53-bDgj3nF2FnzIxhUQuSoYLxR6Dhn6og1Jg_Q
+- name: minikube
+  user:
+    client-certificate: /home/xiehao/.minikube/client.crt
+    client-key: /home/xiehao/.minikube/client.key
+- name: system:serviceaccount:kubeflow:centraldashboard/beta-kube-cn4
+  user:
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6IlRpdnZrTFI1SG93dE81WlVDdU5qRVhZeGR5eDZDbVlxeEZxRGNjMGZLLVUifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlZmxvdyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjZW50cmFsZGFzaGJvYXJkLXRva2VuLTRnY3BnIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImNlbnRyYWxkYXNoYm9hcmQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIxMzllY2VkYy0wYmQ4LTRkODQtYjc5NS01ZTFjYWUyYjI0NzAiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZWZsb3c6Y2VudHJhbGRhc2hib2FyZCJ9.tW7x6LYlDDChJn5-MEhPewO-xET5_ayDCY8VFj-SvsCNrkZJq4ShAUFhSGUWxKthTAqY_nWpRwDdfammuoZfIieVCtOQZckY5GpxdlOzNS_eMdqTDs_54otRKAgrndblXgQa2za3ecvWbpbnB567WNXMDYfMZZOG_nGx2tcXycOYM3HLE0kU1Xi7d5-u_2cFqjqUqGCvHg3y3umhWUyyEdlIqG7SVkXztjg6hSr_ANRhDgDUsMeJyAvOq9-HlUOXAMnAlIvgoXy9WQ0tFF93YoovA3jFEw626uT8KBC0xCwYOUyFAAIoAyHzK0Oky0RdzjT_4IUUG26Fv4jWciiFFw

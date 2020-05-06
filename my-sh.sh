@@ -13,6 +13,11 @@ if [ $(uname) = "Darwin" ]; then
   export PATH="/usr/local/opt/llvm/bin:$PATH"
 fi
 
+# Python
+if [ $(uname) = "Darwin" ]; then
+  export PATH=/Users/xiehao/Library/Python/3.7/bin:$PATH
+fi
+
 # CUDA
 export PATH=/usr/local/cuda-10.2/bin:/usr/local/cuda-10.2/nsight-compute-2019.5.0${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
